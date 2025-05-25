@@ -2,6 +2,7 @@
 
 from faker import Faker
 import random
+import os
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -9,7 +10,8 @@ from sqlalchemy.orm import sessionmaker
 from models import Game, Review
 
 if __name__ == '__main__':
-    engine = create_engine('sqlite:///one_to_many.db')
+    db_path = os.path.join(os.path.dirname(__file__), 'one_to_many.db')
+    engine = create_engine(f'sqlite:///{db_path}')
     Session = sessionmaker(bind=engine)
     session = Session()
 
